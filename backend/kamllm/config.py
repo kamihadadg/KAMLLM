@@ -35,3 +35,21 @@ def get_settings() -> Settings:
         chunk_overlap=max(0, int(os.getenv("CHUNK_CHAR_OVERLAP", "150"))),
         top_k=max(1, int(os.getenv("TOP_K_CHUNKS", "6"))),
     )
+
+
+def replace_chroma_path(settings: Settings, chroma_path: Path) -> Settings:
+    """Same Ollama / chunk knobs; different on-disk PDF index folder (multi-project)."""
+    p = chroma_path
+    if not p.is_absolute():
+        p = (Path.cwd() / p).resolve()
+    else:
+        p = p.resolve()
+    return Settings(
+        ollama_base_url=settings.ollama_base_url,
+        chat_model=settings.chat_model,
+        embed_model=settings.embed_model,
+        chroma_path=p,
+        chunk_size=settings.chunk_size,
+        chunk_overlap=settings.chunk_overlap,
+        top_k=settings.top_k,
+    )

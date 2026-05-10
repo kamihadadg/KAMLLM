@@ -1,8 +1,15 @@
 .venv/
+**/node_modules/
+**/.next/
+**/.turbo/
 __pycache__/
 *.py[cod]
-.chroma/
+**/.chroma/
 .env
+**/.env.local
+**/npm-debug.log*
 *.egg-info/
 dist/
 build/
+frontend/out/
+backend/data/

@@ -16,10 +16,14 @@ dependencies = [
   "fastapi>=0.115",
   "uvicorn[standard]>=0.27",
   "python-multipart>=0.0.9",
+  "bcrypt>=4.2",
+  "PyJWT>=2.9",
+  "email-validator>=2.0",
 ]
 
 [project.scripts]
 kamllm = "kamllm.cli:app"
+kamllm-api = "kamllm.api_main:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

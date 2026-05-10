@@ -1,6 +1,6 @@
 """
-One-off generator: writes doc/imperial_history_empires_50pages.pdf (English, A4).
-Run from repo root: python scripts/build_imperial_history_pdf.py
+One-off generator: writes backend/Docs/imperial_history_empires_50pages.pdf (English, A4).
+Run from backend dir: python scripts/build_imperial_history_pdf.py
 """
 
 from __future__ import annotations
@@ -64,7 +64,7 @@ EMPIRES: list[tuple[str, str, str, str]] = [
     ("Legacies in borders and law", "Worldwide", "Longue durée", "Imperial maps ghost in today’s conflicts; legal pluralisms and migration networks inherit colonial switches. Studying empires clarifies how power routinizes difference."),
 ]
 
-OUT = Path("doc") / "imperial_history_empires_50pages.pdf"
+OUT = Path(__file__).resolve().parent.parent / "Docs" / "imperial_history_empires_50pages.pdf"
 
 
 def write_pdf() -> None:

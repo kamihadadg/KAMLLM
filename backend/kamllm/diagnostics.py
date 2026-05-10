@@ -32,7 +32,7 @@ class HealthReport:
         )
 
 
-def run_health(settings: Settings) -> HealthReport:
+def run_health(settings: Settings, *, include_index: bool = True) -> HealthReport:
     o_err = e_err = c_err = i_err = None
     o_ok = e_ok = c_ok = False
     dim: int | None = None
@@ -59,11 +59,12 @@ def run_health(settings: Settings) -> HealthReport:
     except Exception as exc:  # noqa: BLE001
         c_err = str(exc)
 
-    try:
-        n = count_chunks(settings)
-        db_exists = (settings.chroma_path / "chunks.sqlite").is_file()
-    except Exception as exc:  # noqa: BLE001
-        i_err = str(exc)
+    if include_index:
+        try:
+            n = count_chunks(settings)
+            db_exists = (settings.chroma_path / "chunks.sqlite").is_file()
+        except Exception as exc:  # noqa: BLE001
+            i_err = str(exc)
 
     return HealthReport(
         ollama_ok=o_ok,
