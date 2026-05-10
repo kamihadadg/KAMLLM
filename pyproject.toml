@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kamllm"
+version = "0.1.0"
+description = "Local PDF RAG CLI with Ollama and a SQLite-backed chunk index."
+requires-python = ">=3.10"
+dependencies = [
+  "typer>=0.12",
+  "pymupdf>=1.24",
+  "requests>=2.31",
+  "numpy>=1.26",
+  "python-dotenv>=1.0",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.27",
+  "python-multipart>=0.0.9",
+]
+
+[project.scripts]
+kamllm = "kamllm.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
